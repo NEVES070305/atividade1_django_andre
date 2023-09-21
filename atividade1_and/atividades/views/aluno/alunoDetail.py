@@ -20,7 +20,7 @@ class AlunoDetail(APIView):
     - serializer_class (AlunoSerializer): O serializador usado para serializar e desserializar objetos Aluno.
     """
     
-    def get(self, request, pk):
+    def get(self, request, id):
         """
         Retorna detalhes de um aluno específico com base no ID.
 
@@ -31,11 +31,11 @@ class AlunoDetail(APIView):
         Retorna:
         - Response: Uma resposta HTTP contendo os detalhes do aluno em formato JSON.
         """
-        aluno = Aluno.objects.get(pk=pk)
+        aluno = Aluno.objects.get(pk=id)
         serializer = AlunoSerializer(aluno)
         return Response(serializer.data)
 
-    def put(self, request, pk):
+    def put(self, request, id):
         """
         Atualiza os detalhes de um aluno específico com base no ID.
 
@@ -46,14 +46,14 @@ class AlunoDetail(APIView):
         Retorna:
         - Response: Uma resposta HTTP com os detalhes do aluno atualizados em formato JSON, ou uma resposta de erro 400 em caso de dados inválidos.
         """
-        aluno = Aluno.objects.get(pk=pk)
+        aluno = Aluno.objects.get(pk=id)
         serializer = AlunoSerializer(aluno, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
+    def delete(self, request, id):
         """
         Exclui um aluno específico com base no ID.
 
@@ -64,6 +64,6 @@ class AlunoDetail(APIView):
         Retorna:
         - Response: Uma resposta HTTP com status 204 No Content para indicar que o aluno foi excluído com sucesso.
         """
-        aluno = Aluno.objects.get(pk=pk)
+        aluno = Aluno.objects.get(pk=id)
         aluno.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

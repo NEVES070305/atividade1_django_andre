@@ -6,7 +6,7 @@ from atividades.serializers.tarefaSerializer import TarefaSerializer
 
 # Cria uma classe chamada TarefaDetail que herda de APIView
 class TarefaDetail(APIView):
-    def get(self, request, pk):
+    def get(self, request, id):
         """
         Método para lidar com solicitações GET para recuperar uma tarefa por ID.
 
@@ -18,13 +18,13 @@ class TarefaDetail(APIView):
             Uma resposta HTTP com os dados da tarefa serializados.
         """
         # Recupera uma instância de Tarefa com base no ID (pk) fornecido
-        tarefa = Tarefa.objects.get(pk=pk)
+        tarefa = Tarefa.objects.get(pk=id)
         # Serializa a instância da Tarefa usando o TarefaSerializer
         serializer = TarefaSerializer(tarefa)
         # Retorna a resposta HTTP com os dados serializados
         return Response(serializer.data)
 
-    def put(self, request, pk):
+    def put(self, request, id):
         """
         Método para lidar com solicitações PUT para atualizar uma tarefa existente.
 
@@ -37,7 +37,7 @@ class TarefaDetail(APIView):
             uma resposta de erro com status 400 se a validação falhar.
         """
         # Recupera uma instância de Tarefa com base no ID (pk) fornecido
-        tarefa = Tarefa.objects.get(pk=pk)
+        tarefa = Tarefa.objects.get(pk=id)
         # Cria uma instância do TarefaSerializer com os dados da solicitação e a tarefa existente
         serializer = TarefaSerializer(tarefa, data=request.data)
         # Verifica se a serialização é válida
@@ -49,7 +49,7 @@ class TarefaDetail(APIView):
         # Se a serialização não for válida, retorna uma resposta com os erros de validação e status 400
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
+    def delete(self, request, id):
         """
         Método para lidar com solicitações DELETE para excluir uma tarefa existente.
 
@@ -61,7 +61,7 @@ class TarefaDetail(APIView):
             Uma resposta HTTP com status 204 (No Content) para indicar que a exclusão foi bem-sucedida.
         """
         # Recupera uma instância de Tarefa com base no ID (pk) fornecido
-        tarefa = Tarefa.objects.get(pk=pk)
+        tarefa = Tarefa.objects.get(pk=id)
         # Exclui a instância da Tarefa do banco de dados
         tarefa.delete()
         # Retorna uma resposta HTTP com status 204 (No Content) para indicar a exclusão bem-sucedida
