@@ -5,12 +5,44 @@ from atividades.models.alunoModels import Aluno
 from atividades.serializers.alunoSerializer import AlunoSerializer
 
 class AlunoList(APIView):
+    """
+    Classe de visualização (view) para operações de lista e criação de alunos.
+
+    A classe AlunoList fornece endpoints para listar todos os alunos e criar um novo aluno.
+
+    Métodos:
+    - get(request): Retorna a lista de todos os alunos.
+    - post(request): Permite a criação de um novo aluno.
+
+    Atributos:
+    - model (Aluno): O modelo Aluno associado a esta visualização.
+    - serializer_class (AlunoSerializer): O serializador usado para serializar e desserializar objetos Aluno.
+    """
+    
     def get(self, request):
+        """
+        Retorna a lista de todos os alunos.
+
+        Args:
+        - request: A solicitação HTTP.
+
+        Retorna:
+        - Response: Uma resposta HTTP contendo a lista de alunos em formato JSON.
+        """
         alunos = Aluno.objects.all()
         serializer = AlunoSerializer(alunos, many=True)
         return Response(serializer.data)
 
     def post(self, request):
+        """
+        Permite a criação de um novo aluno.
+
+        Args:
+        - request: A solicitação HTTP contendo os dados do novo aluno a ser criado.
+
+        Retorna:
+        - Response: Uma resposta HTTP com os detalhes do novo aluno criado em formato JSON, ou uma resposta de erro 400 em caso de dados inválidos.
+        """
         serializer = AlunoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
