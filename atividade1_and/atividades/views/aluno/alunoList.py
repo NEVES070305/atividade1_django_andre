@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from models.alunoModels import Aluno
-from serializers.alunoSerializer import AlunoSerializer
+from atividades.models.alunoModels import Aluno
+from atividades.serializers.alunoSerializer import AlunoSerializer
 
 class AlunoList(APIView):
     def get(self, request):

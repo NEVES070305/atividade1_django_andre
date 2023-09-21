@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from models.disciplinaModels import Disciplina
-from serializers.disciplinaSerializer import DisciplinaSerializer
+from atividades.models.disciplinaModels import Disciplina
+from atividades.serializers.disciplinaSerializer import DisciplinaSerializer
 
 class DisciplinaList(APIView):
     def get(self, request):

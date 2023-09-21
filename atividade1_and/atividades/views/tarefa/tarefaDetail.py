@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from models.tarefaModels import Tarefa
-from serializers.tarefaSerializer import TarefaSerializer
+from atividades.models.tarefaModels import Tarefa
+from atividades.serializers.tarefaSerializer import TarefaSerializer
 
 class TarefaDetail(APIView):
     def get(self, request, pk):
