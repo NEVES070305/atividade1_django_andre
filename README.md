@@ -11,7 +11,7 @@ A API oferece os seguintes endpoints:
 - `/disciplinas/<int:id>/`: Obtém detalhes de uma disciplina específica, atualiza ou exclui a disciplina.
 - `/tarefas/`: Lista todas as tarefas e permite criar uma nova tarefa.
 - `/tarefas/<int:id>/`: Obtém detalhes de uma tarefa específica, atualiza ou exclui a tarefa.
-- 'alunos/<int:aluno_id>/tarefas/': Obtém lista de tarefas de um aluno.
+- `alunos/<int:aluno_id>/tarefas/`: Obtém lista de tarefas de um aluno.
 
 ## Uso
 
