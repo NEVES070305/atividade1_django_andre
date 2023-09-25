@@ -22,6 +22,6 @@ Para usar esta API, você pode fazer solicitações HTTP para os endpoints corre
 1. Clone este repositório;
 2. Configure seu ambiente Python (.env);
 3. Instale as dependências com `pip install -r requirements.txt`;
-4. Faça o arquivo com o comando 'python manage.py makemigrations';
+4. Faça o arquivo com o comando `python manage.py makemigrations`;
 5. Execute as migrações do banco de dados com `python manage.py migrate`;
 6. Inicie o servidor de desenvolvimento com `python manage.py runserver`.
